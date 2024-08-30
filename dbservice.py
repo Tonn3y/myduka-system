@@ -98,7 +98,7 @@ def profitsperday() :
 
 # Profitsperproduct
 def profitsperproduct() :
-    query = "SELECT sum((sellingprice - buyingprice) * quantity) as profitsperproduct,name from sales inner join products on products.productid = sales.productid group by name order by profitsperproduct"
+    query = "SELECT sum((sellingprice - buyingprice) * quantity) as profitsperproduct,name from sales inner join products on products.productid = sales.productid group by name order by profitsperproduct desc"
     cur.execute(query)
     data = cur.fetchall()
     return data
