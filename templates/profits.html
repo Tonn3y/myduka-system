@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %} Profits {% endblock %}
+{% block content %}
+<table   class="table table-dark table-hover">
+    <thead>
+        <tr >
+            <th class="table-light">Profits</th>
+            <th class="table-light">Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for i in profitsmade%}
+            <tr >
+                <td >{{i[0]}}</td>
+                <td >{{i[1]}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table> 
+{% endblock %}
