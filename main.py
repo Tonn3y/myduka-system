@@ -52,7 +52,6 @@ def addproducts():
         # insert products
         newprod = (pname, bprice, sprice, squantity)
         insertproducts(newprod)
-        session['email'] = email
         return redirect(url_for("products"))
 
 
@@ -72,7 +71,6 @@ def makesales():
         quantity = request.form["quantity"]
         salesmade = (pname, quantity)
         insertsales(salesmade)
-        session['email'] = email
         return redirect(url_for("sales"))
 
 
