@@ -35,6 +35,7 @@ def home():
 @app.route("/products")
 def products():
     if "email" not in session :
+        flash("Login for access")
         return redirect(url_for('login'))
     prods = fetcheddata("products")
     return render_template("products.html", prods=prods)
@@ -58,6 +59,7 @@ def addproducts():
 @app.route("/sales")
 def sales():
     if "email" not in session :
+        flash("Login for access")
         return redirect(url_for('login'))
     sales = fetcheddata("sales")
     products = fetcheddata("products")
@@ -165,6 +167,7 @@ def dashboard():
 @app.route('/logout')
 def logout() :
     session.pop('email',None)
+    flash("You've logged out")
     return redirect(url_for('login'))
 
 
