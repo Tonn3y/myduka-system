@@ -59,7 +59,7 @@ def insertsales(salesvalues) :
 # print(sales)
 
 def insertstock(purchases) :
-    query = "INSERT INTO stock (productid,quantity,timepurchased) vALUES(%s,%s,now())"
+    query = "INSERT INTO stock (productid,stockquantity,timepurchased) vALUES(%s,%s,now())"
     cur.execute(query,purchases)
     conn.commit()
 
