@@ -58,6 +58,16 @@ def insertsales(salesvalues) :
 # sales = fetcheddata('sales')
 # print(sales)
 
+def insertstock(purchases) :
+    query = "INSERT INTO stock (productid,quantity,timepurchased) vALUES(%s,%s,now())"
+    cur.execute(query,purchases)
+    conn.commit()
+
+def editproducts(change):
+        query = "UPDATE products set name = %s, buyingprice = %s,sellingprice = %s,stockquantity= %s where productid = %s;"
+        cur.execute(query,change)
+        conn.commit()
+
 def profits() :
     query = 'SELECT sum((sellingprice - buyingprice)*quantity) AS Profits,name from products INNER JOIN sales on sales.productid = products.productid group by name;'
     cur.execute(query)

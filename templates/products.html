@@ -28,6 +28,9 @@
                         <a class="nav-link" href="/sales">sales</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="/stock">stock</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="/dashboard">Dashboard</a>
                     </li>
                     <li class="nav-item">
@@ -102,6 +105,7 @@
                 <th>Buying price</th>
                 <th>Selling price</th>
                 <th>Stock quantity</th>
+                <th>Edit details</th>
             </tr>
         </thead>
         <tbody>
@@ -112,6 +116,49 @@
                 <td>{{i[2]}}</td>
                 <td>{{i[3]}}</td>
                 <td>{{i[4]}}</td>
+                <td><!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal{{i[0]}}">
+                        Edit product
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal{{i[0]}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Edit product</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="/editproducts" method="post">
+                                        <input type="hidden" name="id" value="{{ i[0] }}">
+                                        <div class="mb-3">
+                                            <label for="pname{{ i[0] }}" class="form-label">Product name</label>
+                                            <input name="pname" type="text" class="form-control" id="pname{{ i[0] }}" 
+                                                aria-describedby="emailHelp" value="{{ i[1] }}" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="buyingprice{{ i[0] }}" class="form-label">Buying Price</label>
+                                            <input name="buyingprice" type="number" class="form-control" id="buyingprice{{ i[0] }}" value="{{ i[2] }}" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="sellingprice{{i[0]}}" class="form-label">Selling Price</label>
+                                            <input name="sellingprice" type="number" class="form-control" id="sellingprice{{i[0]}}" value="{{ i[3] }}"
+                                                required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="quantity{{ i[0] }}" class="form-label">Stock quantity</label>
+                                            <input name="quantity" type="number" class="form-control" id="quantity{{ i[0] }}"" value="{{ i[4] }}" required>
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

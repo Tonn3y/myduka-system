@@ -10,6 +10,8 @@ from dbservice import (
     profitsperday,
     insertusers,
     checkemail,
+    insertstock,
+    editproducts
 )
 from flask_bcrypt import Bcrypt 
 
@@ -74,6 +76,37 @@ def makesales():
         salesmade = (pname, quantity)
         insertsales(salesmade)
         return redirect(url_for("sales"))
+    
+@app.route('/stock') 
+def stock() :
+    if "email" not in session :
+        flash("Login for access")
+        return redirect(url_for('login'))
+    stock = fetcheddata('stock') 
+    products = fetcheddata('products')   
+    return render_template("stock.html",stock=stock,products = products)
+
+@app.route('/makepurchases',methods = ["GET","POST"])
+def makepurchases():
+    if request.method == "POST" :
+        productname = request.form["pid"]
+        quantity = request.form["quantity"]
+        purchases = (productname,quantity)
+        insertstock(purchases)
+        return redirect(url_for("stock"))
+
+@app.route('/editproducts',methods = ["GET","POST"])
+def editproduct():
+    if request.method == "POST" :
+        pid = request.form["id"]
+        pname = request.form["pname"]
+        bprice = request.form["buyingprice"]
+        sprice = request.form["sellingprice"]
+        squantity = request.form["quantity"]
+        # editting products
+        finalproduct = (pname, bprice, sprice, squantity,pid)
+        editproducts(finalproduct)
+        return redirect(url_for("products"))
 
 
 @app.route("/register",methods = ["GET","POST"])
