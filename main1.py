@@ -26,6 +26,10 @@ def user() :
         return f"<h1>{user}</h1>"
     else :
         return redirect(url_for("login")) 
+    
+@app.errorhandler(404)
+def pagenotfound (error) :
+    return render_template('pagenotfound.html'),404    
 
 
 
