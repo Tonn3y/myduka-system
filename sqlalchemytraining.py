@@ -19,3 +19,5 @@ employees = session.query(Employee).all()
 #  loop through and print the employee
 for employee in employees :
     print(f"ID: {employee.employeeid}, firstname: {employee.firstname}, lastname: {employee.lastname}, Email:{employee.email},City:{employee.city}")
+
+session.close()
