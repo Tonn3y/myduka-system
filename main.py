@@ -14,6 +14,7 @@ from dbservice import (
     editproducts
 )
 from flask_bcrypt import Bcrypt 
+# from flask_sqlalchemy import SQLAlchemy
 
 
 # Create an instance
@@ -22,7 +23,14 @@ from flask_bcrypt import Bcrypt
 # run the application
 app = Flask(__name__)
 bcrypt = Bcrypt(app) 
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///users.sqlite3'
+# app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.secret_key = 'cd7a45a8c7975c87f573c2a1d86e10e6d278be20bba17b3b05c10895ea476203'
+
+# db = SQLAlchemy(app)
+
+# class users(db.Model):
+
 
 @app.route("/")
 def index():
