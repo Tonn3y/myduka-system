@@ -28,5 +28,7 @@ class User(db.Model):
     id = db.Column(db.integer,primary_key = True)
     fullname = db.Column(db.integer,nullable = False)
     email = db.Column(db.string(255),unique = True ,nullable = False)
-    password = db.Column(db.strung(255),nullable = False)
+    password = db.Column(db.string(255),nullable = False)
+
+
 
