@@ -4,31 +4,33 @@ db = SQLAlchemy()
 
 class Product(db.Model) :
     __tablename__ = 'products'
-    id = db.Column(db.integer,primary_key = True)
-    pname = db.Column(db.string(225),nullable = False)
-    bprice = db.Column(db.float,nullable = False)
-    sprice = db.Column(db.float,nullable = False)
+    id = db.Column(db.Integer,primary_key = True)
+    pname = db.Column(db.String(225),nullable = False)
+    bprice = db.Column(db.Float,nullable = False)
+    sprice = db.Column(db.Float,nullable = False)
+    stock = db.relationship('stock', back_populates='product')
     
-class stock(db.Model):
+class Stock(db.Model):
     __tablename__ = "stock"
-    id = db.Column(db.integer,primary_key = True)
-    productid = db.Column(db.integer,nullable = False)
-    stockquantity = db.Column(db.integer,nullable = False)
+    id = db.Column(db.Integer,primary_key = True)
+    productid = db.Column(db.Integer,nullable = False)
+    stockquantity = db.Column(db.Integer,nullable = False)
     timepurchased = db.Column(db.DateTime,default = datetime.utcnow)
     product = db.relationship('Product',backref = 'stock')
 
 class Sale(db.Model):
     __tablename__ = "sales"
-    id = db.Column(db.integer,primary_key = True)
-    pid = db.Column(db.integer,db.ForeignKey('products.id'),nullable = False)
-    quantity = db.Column(db.integer,nullable = False)
+    id = db.Column(db.Integer,primary_key = True)
+    pid = db.Column(db.Integer,db.ForeignKey('products.id'),nullable = False)
+    quantity = db.Column(db.Integer,nullable = False)
     timesold = db.Column(db.DateTime,default = datetime.utcnow)
 
 class User(db.Model):
-    id = db.Column(db.integer,primary_key = True)
-    fullname = db.Column(db.integer,nullable = False)
-    email = db.Column(db.string(255),unique = True ,nullable = False)
-    password = db.Column(db.string(255),nullable = False)
+    __tablename__ = 'users'
+    id = db.Column(db.Integer,primary_key = True)
+    fullname = db.Column(db.Integer,nullable = False)
+    email = db.Column(db.String(255),unique = True ,nullable = False)
+    password = db.Column(db.String(255),nullable = False)
 
 
 

@@ -14,7 +14,9 @@ from dbservice import (
     editproducts
 )
 from flask_bcrypt import Bcrypt 
-# from flask_sqlalchemy import SQLAlchemy
+from models import db,User,Product,Sale,Stock
+# from flask_login import LoginManager
+# login_manager = LoginManager()
 
 
 # Create an instance
@@ -23,13 +25,11 @@ from flask_bcrypt import Bcrypt
 # run the application
 app = Flask(__name__)
 bcrypt = Bcrypt(app) 
-# app.config["SQLALCHEMY_DATABASE_URI"] = 'sqlite:///users.sqlite3'
+# app.config["SQLALCHEMY_DATABASE_URI"] = 'postgresql://postgres:#iamAfrica@localhost/myduka'
 # app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+# db.init_app(app)
+# login_manager.init_app(app)
 app.secret_key = 'cd7a45a8c7975c87f573c2a1d86e10e6d278be20bba17b3b05c10895ea476203'
-
-# db = SQLAlchemy(app)
-
-# class users(db.Model):
 
 
 @app.route("/")
@@ -123,7 +123,7 @@ def register():
         fname = request.form["fullname"]
         email = request.form["email"]
         password = request.form["password"]
-        hashed_password = bcrypt.generate_password_hash (password).decode('utf-8')
+        hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
 
         x = checkemail(email)
         if x == None:
