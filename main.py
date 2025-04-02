@@ -14,7 +14,7 @@ from dbservice import (
     editproducts
 )
 from flask_bcrypt import Bcrypt 
-from models import db,User,Product,Sale,Stock
+# from models import db,User,Product,Sale,Stock
 # from flask_login import LoginManager
 # login_manager = LoginManager()
 
@@ -222,7 +222,7 @@ def profitsmade():
 def year():
     return "2001"
 
-app.run(debug=True)
+app.run(port=5001,debug=True)
 
 
 # URL => Uniform Resource Locator e.g: https://jumia.com
