@@ -14,6 +14,7 @@ from dbservice import (
     editproducts
 )
 from flask_bcrypt import Bcrypt 
+# from flask_login import LoginManager
 # from models import db,User,Product,Sale,Stock
 # from flask_login import LoginManager
 # login_manager = LoginManager()
